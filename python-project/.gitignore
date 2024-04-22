@@ -10,9 +10,6 @@ __pycache__/
 *.pyd
 .venv/
 
-# Exclude Docker build artifacts
-.dockerignore
-Dockerfile
 
 # Exclude temporary files
 *.bak
