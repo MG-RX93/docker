@@ -1,0 +1,15 @@
+# Exclude build-related files
+build/
+dist/
+*.log
+
+# Exclude Python cache and virtual environments
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+
+
+# Exclude temporary files
+*.bak
