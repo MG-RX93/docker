@@ -8,7 +8,7 @@ DIRECTORY_NAME="test-project"
 
 # Local file paths
 HOSTS_FILE="../../inventories/ansible/hosts.ini"
-PLAYBOOK_FILE="../../playbooks/ansible/test-project-playbook.yml"
+PLAYBOOK_FILE="../../playbooks/ansible/install_packages.yml"
 
 # Enter the running container and create the directory
 echo "Entering the container and creating the $DIRECTORY_NAME directory..."
