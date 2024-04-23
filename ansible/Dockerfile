@@ -2,7 +2,7 @@
 FROM ubuntu:latest
 
 # Install Ansible and other necessary packages
-RUN apt-get update && apt-get install -y ansible
+RUN apt-get update && apt-get install -y ansible nano chrony fish git
 
 # Keep the container running
 CMD tail -f /dev/null
