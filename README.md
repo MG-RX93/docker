@@ -1,3 +1,5 @@
+## Directory Structure
+```text
 my-repo/
 │
 ├── playbooks/          # Directory for Ansible playbooks
@@ -35,3 +37,4 @@ my-repo/
         ├── app2.py     # Example code for project 2
         ├── requirements.txt  # Dependencies for project 2
         └── ...
+```
