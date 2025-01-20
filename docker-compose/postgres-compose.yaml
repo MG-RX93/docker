@@ -5,6 +5,6 @@ services:
     restart: unless-stopped
     env_file: .envpostgres
     volumes:
-      - '/Users/jrk/Documents/docker_data/postgres_storage:/var/lib/postgresql/data'
+      - '${POSTGRES_STORAGE_PATH}:/var/lib/postgresql/data'
     ports:
       - "5432:5432"

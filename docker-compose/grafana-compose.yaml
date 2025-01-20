@@ -6,4 +6,4 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - '/Users/jrk/Documents/docker_data/grafana_storage:/var/lib/grafana'
+      - '${GRAFANA_STORAGE_PATH}:/var/lib/grafana'

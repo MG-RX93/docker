@@ -4,6 +4,6 @@ services:
     container_name: n8n
     env_file: .envn8n
     volumes:
-      - '/Users/jrk/Documents/docker_data/n8n_storage:/home/node/.n8n'
+      - '${N8N_STORAGE_PATH}:/home/node/.n8n'
     ports:
       - '5678:5678'
