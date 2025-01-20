@@ -1,0 +1,9 @@
+services:
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    env_file: .envgrafana
+    ports:
+      - '3000:3000'
+    volumes:
+      - '/Users/jrk/Documents/docker_data/grafana_storage:/var/lib/grafana'
