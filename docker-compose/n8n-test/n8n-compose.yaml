@@ -1,0 +1,24 @@
+services:
+  n8n:
+    image: n8nio/n8n:latest  # Use the latest n8n image
+    container_name: n8n  # Name the container "n8n"
+    env_file: .envn8n  # Load environment variables from .envn8n file
+    ports:
+      - '5678:5678'  # Map port 5678 on the host to port 5678 on the container
+    networks:
+      - app-network  # Connect to the app-network
+    volumes:
+      - '${N8N_STORAGE_PATH}:/home/node/.n8n'  # Use a volume for persistent storage
+    environment:
+      - DB_TYPE=postgresdb  # Set the database type to PostgreSQL
+      - DB_POSTGRESDB_DATABASE=${POSTGRES_DATABASE}  # Set the PostgreSQL database name
+      - DB_POSTGRESDB_HOST=postgres  # Use the hostname or IP of the external PostgreSQL container
+      - DB_POSTGRESDB_PORT=${POSTGRES_PORT}  # Set the PostgreSQL port
+      - DB_POSTGRESDB_USER=${POSTGRES_USER}  # Set the PostgreSQL user
+      - DB_POSTGRESDB_SCHEMA=${POSTGRES_SCHEMA}  # Set the PostgreSQL schema
+      - DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD}  # Set the PostgreSQL password
+
+networks:
+  app-network:
+    external: true  # Use an external network
+    name: my_app_app-network  # use "my_app_app-network"

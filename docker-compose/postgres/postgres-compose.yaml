@@ -1,9 +1,18 @@
 services:
-  postgres:
-    image: postgres:latest
-    container_name: postgres    
-    env_file: .envpostgres
+  postgres:  # Define the postgres service
+    image: postgres:latest  # Use the latest postgres image
+    container_name: postgres  # Name the container 'postgres'
+    env_file: .envpostgres  # Load environment variables from .envpostgres file
     volumes:
-      - '${POSTGRES_STORAGE_PATH}:/var/lib/postgresql/data'
+      - '${POSTGRES_STORAGE_PATH}:/var/lib/postgresql/data'  # Mount the host directory to the container for data persistence
     ports:
-      - "5432:5432"
+      - "5432:5432"  # Map port 5432 on the host to port 5432 on the container
+    networks:
+      - app-network  # Connect the container to the app-network
+
+networks:
+  app-network:  # Define the app-network
+    driver: bridge  # Use the bridge driver for the network
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16  # Fixed subnet for the network and update pg_hba.conf
