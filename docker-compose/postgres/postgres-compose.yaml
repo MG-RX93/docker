@@ -1,8 +1,7 @@
 services:
   postgres:
     image: postgres:latest
-    container_name: postgres
-    restart: unless-stopped
+    container_name: postgres    
     env_file: .envpostgres
     volumes:
       - '${POSTGRES_STORAGE_PATH}:/var/lib/postgresql/data'

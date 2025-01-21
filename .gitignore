@@ -1,3 +1,6 @@
 .envpostgres
 .envgrafana
 .envn8n
+
+# postgres
+pg_hba.conf

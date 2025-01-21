@@ -1,9 +1,0 @@
-services:
-  n8n:
-    image: n8nio/n8n:latest  # Correct image name
-    container_name: n8n
-    env_file: .envn8n
-    volumes:
-      - '${N8N_STORAGE_PATH}:/home/node/.n8n'
-    ports:
-      - '5678:5678'

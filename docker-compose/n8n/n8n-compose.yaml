@@ -1,0 +1,17 @@
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n
+    env_file: .envn8n  # Load environment variables from .envn8n file
+    ports:
+      - '5678:5678'
+    volumes:
+      - '${N8N_STORAGE_PATH}:/home/node/.n8n'  # Use a volume for persistent storage
+    environment:
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_DATABASE=${POSTGRES_DATABASE}
+      - DB_POSTGRESDB_HOST=${POSTGRES_HOST}  # Use the hostname or IP of the external PostgreSQL container
+      - DB_POSTGRESDB_PORT=${POSTGRES_PORT}
+      - DB_POSTGRESDB_USER=${POSTGRES_USER}
+      - DB_POSTGRESDB_SCHEMA=${POSTGRES_SCHEMA}
+      - DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD}
