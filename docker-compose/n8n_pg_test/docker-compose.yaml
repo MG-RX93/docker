@@ -1,0 +1,48 @@
+networks:
+  app-network:
+    external: true
+    name: my_app_app-network
+
+x-n8n: &service-n8n
+  image: n8nio/n8n:latest
+  container_name: n8n
+  env_file: .envn8n
+  ports:
+    - '5678:5678'
+  networks:
+    - app-network
+  volumes:
+    - '${N8N_STORAGE_PATH}:/home/node/.n8n'
+  environment:
+    - DB_TYPE=postgresdb
+    - DB_POSTGRESDB_DATABASE=${POSTGRES_DATABASE}
+    - DB_POSTGRESDB_HOST=postgres
+    - DB_POSTGRESDB_PORT=${POSTGRES_PORT}
+    - DB_POSTGRESDB_USER=${POSTGRES_USER}
+    - DB_POSTGRESDB_SCHEMA=${POSTGRES_SCHEMA}
+    - DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD}
+
+x-postgres: &service-postgres
+  image: postgres:latest
+  container_name: postgres
+  env_file: .envpostgres
+  volumes:
+    - '${POSTGRES_STORAGE_PATH}:/var/lib/postgresql/data'
+  ports:
+    - "5432:5432"
+  networks:
+    - app-network
+  healthcheck:
+    test: [ 'CMD-SHELL', 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DATABASE}' ]
+    interval: 5s
+    timeout: 5s
+    retries: 10
+
+services:
+  postgres:
+    <<: *service-postgres
+  n8n:
+    <<: *service-n8n
+    depends_on:
+      postgres:
+        condition: service_healthy
