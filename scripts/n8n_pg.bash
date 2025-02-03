@@ -1,0 +1,1 @@
+docker compose --env-file .envn8n --env-file .envpostgres -f docker-compose.yaml up -d
