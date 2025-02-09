@@ -1,0 +1,80 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f8c78a61-e05a-486c-a705-914c63056ec7",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list",
+          "cachedResultName": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "workflow_history",
+          "mode": "list",
+          "cachedResultName": "workflow_history"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        440,
+        0
+      ],
+      "id": "0da7817d-60f0-4bcf-a459-34219c66e431",
+      "name": "Postgres",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "TKdKxvlkkhpmeX7w",
+          "name": "Postgres account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "dc1b11dc-4d52-4faa-a9bd-21cce6acaaab",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "daa794bee10694a6e0890f89e4a863f1d13eea059fb9d26f5c0b07e0e35b8840"
+  },
+  "id": "GJcD2tmjuvb9g7Mw",
+  "tags": []
+}
